@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Satark: Is this message a scam?</title>
+  <meta name="description" content="Paste any suspicious SMS, WhatsApp message or link and find out in a second if it's a scam. Works in English and Hindi. Private: runs on your device.">
+  <meta name="theme-color" content="#0f2a3d">
+  <meta property="og:title" content="Satark: Is this message a scam?">
+  <meta property="og:description" content="Check suspicious SMS, WhatsApp messages and links for scams in a second. English + Hindi. 100% on-device.">
+  <meta property="og:image" content="assets/og.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#message">Skip to message box</a>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="./" aria-label="Satark home">
+        <img src="assets/icon.svg" alt="" width="32" height="32">
+        <span>Satark</span>
+      </a>
+      <div class="lang-toggle" role="group" aria-label="Language / भाषा">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="hi" aria-pressed="false" lang="hi">हिं</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1 class="tagline" data-i18n="tagline"></h1>
+
+    <div class="card input-card">
+      <label for="message" class="visually-hidden" data-i18n="placeholder"></label>
+      <textarea id="message" rows="6" autocomplete="off" spellcheck="false" aria-describedby="privacy input-error"></textarea>
+      <p id="input-error" class="error" role="alert"></p>
+      <div class="input-actions">
+        <button type="button" id="check" class="btn btn-primary" data-i18n="check"></button>
+        <button type="button" id="paste" class="btn btn-secondary" data-i18n="paste"></button>
+        <button type="button" id="clear" class="btn btn-ghost" data-i18n="clear"></button>
+      </div>
+      <p id="privacy" class="privacy">🔒 <span data-i18n="privacy"></span></p>
+    </div>
+
+    <div class="samples-row">
+      <span class="muted" data-i18n="tryExample"></span>
+      <div id="samples" class="chips"></div>
+    </div>
+
+    <div id="result" class="result" hidden aria-live="polite"></div>
+
+    <aside class="stats card">
+      <p class="stats-text" data-i18n="stats"></p>
+      <p class="muted small" data-i18n="statsSource"></p>
+    </aside>
+  </main>
+
+  <footer class="wrap footer">
+    <p><a href="tel:1930"><strong>1930</strong></a> · <a href="https://cybercrime.gov.in/" target="_blank" rel="noopener">cybercrime.gov.in</a> · <a href="https://sancharsaathi.gov.in/" target="_blank" rel="noopener">Sanchar Saathi</a></p>
+    <p class="muted small" data-i18n="footer"></p>
+  </footer>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
