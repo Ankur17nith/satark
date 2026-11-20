@@ -1,5 +1,5 @@
 // Offline support: cache the app shell, serve cache-first, refresh in background.
-const CACHE = 'satark-v1';
+const CACHE = 'satark-v2';
 const ASSETS = [
   './', './index.html', './styles.css', './manifest.webmanifest', './assets/icon.svg',
   './src/app.js', './src/engine.js', './src/rules.js', './src/links.js', './src/i18n.js', './src/samples.js', './src/share.js',

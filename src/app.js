@@ -4,6 +4,16 @@ import { UI, SCAM_INFO, LINK_FLAGS, GENERAL_STEPS, LOW_STEPS } from './i18n.js';
 import { shareText, whatsappUrl, complaintDraft } from './share.js';
 
 const $ = (sel) => document.querySelector(sel);
+const ICONS = {
+  check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  phone: '<path d="M6.6 3.5h2.8l1.4 4.2-2 1.5a12 12 0 0 0 6 6l1.5-2 4.2 1.4v2.8a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/>',
+};
+// Constant markup only, never user text.
+function icon(name) {
+  const span = document.createElement('span');
+  span.innerHTML = `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name]}</svg>`;
+  return span.firstChild;
+}
 const input = $('#message');
 const resultEl = $('#result');
 let lang = loadLang();
@@ -108,15 +118,20 @@ function renderResult(r) {
     parts.push(section('goodSigns', el('ul', { class: 'good' }, r.reassuring.map((s) => el('li', {}, s[lang])))));
   }
 
-  parts.push(section('yourMessage', el('p', { class: 'message-view' }, r.segments.map((seg) => (seg.kind
-    ? el('mark', { class: `hl hl-${seg.kind}` }, seg.text)
-    : seg.text)))));
+  parts.push(section('yourMessage',
+    el('p', { class: 'message-view' }, r.segments.map((seg) => (seg.kind
+      ? el('mark', { class: `hl hl-${seg.kind}` }, seg.text)
+      : seg.text))),
+    r.segments.some((seg) => seg.kind) && el('p', { class: 'legend muted small' },
+      el('mark', { class: 'hl hl-flag' }, t.legendFlag), ' ',
+      el('mark', { class: 'hl hl-badLink' }, t.legendBad), ' ',
+      el('mark', { class: 'hl hl-link' }, t.legendLink))));
 
   const rows = [
     ...r.urls.map((u) => el('li', { class: u.official ? 'ok' : (u.flags.length ? 'bad' : '') },
       el('code', {}, u.url),
       u.official
-        ? el('p', {}, '✓ ' + t.official)
+        ? el('p', { class: 'ok-label' }, icon('check'), t.official)
         : (u.flags.length
           ? el('ul', {}, u.flags.map((f) => el('li', {}, LINK_FLAGS[f.id][lang])))
           : el('p', { class: 'muted' }, t.noIssues)))),
@@ -145,7 +160,7 @@ function renderResult(r) {
     el('details', {}, el('summary', {}, t.reportTitle), draftBox)));
 
   parts.push(el('a', { class: 'helpline', href: 'tel:1930' },
-    el('strong', {}, '📞 ' + t.lostMoney), el('span', {}, t.lostMoneySub)));
+    el('strong', {}, icon('phone'), t.lostMoney), el('span', {}, t.lostMoneySub)));
 
   resultEl.replaceChildren(...parts);
 }

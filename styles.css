@@ -5,11 +5,11 @@
   --ink-2: #4a5b68;
   --line: #e2ded5;
   --brand: #0f2a3d;
-  --accent: #e8743b;
+  --accent: #b8501f;
   --accent-ink: #ffffff;
   --high: #c4302b;
   --high-bg: #fdecea;
-  --mid: #b86e00;
+  --mid: #8a5200;
   --mid-bg: #fff4de;
   --low: #1f7a4d;
   --low-bg: #e6f4ec;
@@ -17,10 +17,11 @@
   --mark-bad: #ffc9c4;
   --mark-link: #dbe8ff;
   --mark-safe: #cdeedb;
-  --wa: #1f9d55;
+  --wa: #17804a;
   --radius: 14px;
   --shadow: 0 1px 2px rgb(15 42 61 / 6%), 0 4px 16px rgb(15 42 61 / 6%);
-  --font: 'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-head: 'Lexend', 'Noto Sans Devanagari', system-ui, sans-serif;
+  --font: 'Source Sans 3', 'Noto Sans Devanagari', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   color-scheme: light;
 }
 
@@ -197,3 +198,15 @@ summary { cursor: pointer; color: var(--ink-2); font-size: 0.92rem; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; scroll-behavior: auto !important; }
 }
+
+h1, h2, h3, .brand, .meter-num { font-family: var(--font-head); }
+html[lang="hi"] h1, html[lang="hi"] h2, html[lang="hi"] h3 { font-family: 'Noto Sans Devanagari', var(--font-head); }
+.ico { width: 1.1em; height: 1.1em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.18em; margin-right: 6px; }
+.privacy { display: flex; align-items: flex-start; gap: 2px; }
+.privacy .ico { margin-top: 0.2em; }
+.ok-label { color: var(--low); font-weight: 600; }
+.helpline strong { display: flex; align-items: center; }
+.hl-badLink { text-decoration: underline wavy var(--high); text-underline-offset: 3px; }
+.legend { margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.legend .hl { padding: 1px 6px; }
+.btn, .chip, .lang-toggle button { transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.08s ease; }
