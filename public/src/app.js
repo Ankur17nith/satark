@@ -55,7 +55,7 @@ function applyStaticText() {
   input.placeholder = t.placeholder;
   $('#hero-title').replaceChildren(...t.heroLines.map((line, i) => el('span', { class: 'kin-line' + (i === t.heroLines.length - 1 ? ' accent' : '') },
     el('span', { class: 'riso' }, line))));
-  $('#stat-tiles').replaceChildren(...t.statTiles.map(([value, label]) => el('div', { class: 'tile' }, el('dd', {}, value), el('dt', {}, label))));
+  $('#stat-tiles').replaceChildren(...t.statTiles.map(([value, label]) => el('div', { class: 'tile pop-in' }, el('dd', {}, value), el('dt', {}, label))));
   $('#how-steps').replaceChildren(...t.howSteps.map(([title, text], i) => el('li', { class: 'pop-in' },
     el('span', { class: 'how-num', 'aria-hidden': 'true' }, String(i + 1).padStart(2, '0')), el('h3', {}, title), el('p', {}, text))));
   document.querySelectorAll('.lang-toggle button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));

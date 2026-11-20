@@ -34,12 +34,14 @@
 | sheet-in | 620 ms, staggered 90 ms | Result cards slide into place (movement only, never hidden) |
 | stamp | 420 ms after 380 ms | The verdict stamp is pressed onto the sheet |
 | count-up | 700 ms ease-out | The risk score counts up to its value |
-| pop-in | scroll timeline, where supported | How-it-works cards settle as they scroll in |
+| pop-in | scroll timeline, where supported | Stats tiles and step cards settle as they scroll in (movement only) |
+| how-slide | CSS scroll timeline; section pinned for 230vh, range `contain 4%`–`96%` | Desktop: the four step cards slide sideways as you scroll and a striped rope fills underneath. Phones, reduced motion and browsers without scroll timelines get the plain grid. No script, native scrolling |
 
 Under `prefers-reduced-motion: reduce` every animation and transition jumps to its end state and the score is shown at once.
 
 ## Performance
 
 - Anything that loops moves by `transform` only (the waves are background tiles one period wider than the page).
+- Scroll-linked motion uses the browser's own scroll timelines, never a scroll library or a scroll listener, so scrolling stays native and smooth.
 - The paper grain is one fixed layer with plain opacity, no blend mode.
 - No framework, no build step; the only external request is Google Fonts.

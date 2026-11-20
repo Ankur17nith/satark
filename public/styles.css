@@ -295,17 +295,54 @@ html[lang="hi"] .tile dt { font-family: var(--font); font-size: 15px; letter-spa
 /* How it works */
 .how { padding-top: 72px; }
 .how-steps { list-style: none; margin: 36px 0 0; padding: 0; display: grid; gap: 18px; }
-@media (min-width: 860px) { .how-steps { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 720px) { .how-steps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1200px) { .how-steps { grid-template-columns: repeat(4, 1fr); } }
 .how-steps li { border: 2px solid var(--ink); border-radius: 12px; background: var(--card); padding: 22px; }
+.how-steps li:nth-child(2) { background: var(--sun-tint); }
+.how-steps li:nth-child(3) { background: var(--safe-tint); }
+.how-steps li:nth-child(4) { background: var(--sea-tint); }
 .how-num { display: block; font-family: var(--display); font-variation-settings: 'wdth' 70; font-weight: 900; font-size: 72px; line-height: 0.85; color: var(--sea); text-shadow: 0.045em 0.03em 0 rgb(255 90 31 / 0.55); }
 .how-steps h3 { margin: 16px 0 8px; font-size: 22px; font-weight: 800; line-height: 1.2; }
 .how-steps p { margin: 0; color: var(--body); }
+/* A rope that fills as the steps go by (only shown in the pinned version below). */
+.how-rope { display: none; margin-top: 40px; height: 14px; border: 2px solid var(--ink); border-radius: 999px; background: var(--card); overflow: hidden; }
+.how-rope-fill { height: 100%; transform-origin: left center; background: repeating-linear-gradient(120deg, var(--rescue) 0 10px, var(--sun) 10px 20px); }
+
+/* Sheets settle into place as they scroll in. Movement only, never opacity, so a screenshot or a slow scroll always shows the content. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .pop-in { animation: pop-in linear both; animation-timeline: view(); animation-range: entry 5% cover 30%; }
   }
 }
 @keyframes pop-in { from { transform: translateY(40px) rotate(-1.5deg); } }
+
+/*
+ * Wide screens: the section pins and the step cards slide sideways as you scroll, with the rope
+ * filling underneath. Built on the browser's scroll timelines, so it needs no script and the page
+ * keeps native scrolling. Phones, reduced motion and browsers without scroll timelines get the grid.
+ */
+@supports (animation-timeline: view()) {
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    .how { view-timeline-name: --how; height: 230vh; padding-top: 0; }
+    .how-stage {
+      position: sticky; top: 64px; height: calc(100svh - 64px); max-width: none; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: center;
+      padding-inline: max(24px, calc(50vw - 552px));
+    }
+    .how-track {
+      display: flex; width: max-content; gap: 28px;
+      animation: how-slide linear both; animation-timeline: --how; animation-range: contain 4% contain 96%;
+    }
+    .how-track li { width: min(470px, 36vw); padding: 30px; animation: none; }
+    .how-track .how-num { font-size: 110px; }
+    .how-track h3 { font-size: 30px; }
+    .how-track p { font-size: 19px; }
+    .how-rope { display: block; }
+    .how-rope-fill { animation: how-rope linear both; animation-timeline: --how; animation-range: contain 4% contain 96%; }
+  }
+}
+@keyframes how-slide { to { transform: translateX(calc(-100% + min(1104px, 100vw - 48px))); } }
+@keyframes how-rope { from { transform: scaleX(0.04); } to { transform: scaleX(1); } }
 
 /* Footer: the waves run into deep sea */
 .footer { margin-top: 96px; }
