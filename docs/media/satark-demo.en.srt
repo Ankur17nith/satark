@@ -1,0 +1,71 @@
+1
+00:00:00,400 --> 00:00:07,200
+In 2024, Indians lost ₹22,000 crore to online fraud. Triple the year before.
+
+2
+00:00:07,700 --> 00:00:11,833
+One scam alone, "digital arrest", took nearly ₹2,000 crore.
+
+3
+00:00:12,300 --> 00:00:18,791
+Scammers pose as police, keep victims on a video call for hours, and forbid them to tell anyone.
+
+4
+00:00:19,600 --> 00:00:25,094
+The problem isn't that people don't care. In that moment, they're scared, rushed, and alone.
+
+5
+00:00:26,700 --> 00:00:31,836
+Meet Satark. Paste any suspicious message, and know in one second if it's a scam.
+
+6
+00:00:33,800 --> 00:00:38,132
+Here's a typical digital arrest message. Paste it, and tap check.
+
+7
+00:00:38,700 --> 00:00:44,463
+Ninety-five out of a hundred. Very likely a scam. The verdict comes first, in plain words.
+
+8
+00:00:46,000 --> 00:00:53,517
+Satark names the scam, digital arrest, and explains it. Real police never arrest anyone over a video call.
+
+9
+00:00:55,600 --> 00:01:04,728
+Then it shows every red flag. Claiming to be police. "Don't tell your family." "Transfer money to an RBI account." And a foreign phone number.
+
+10
+00:01:07,600 --> 00:01:14,520
+Every point of the score comes from a highlighted phrase. No black box, so people can trust it, and learn from it.
+
+11
+00:01:17,200 --> 00:01:25,793
+Links are checked too. This one pretends to be SBI, but it's a cheap .xyz domain, not secure, and full of bait words.
+
+12
+00:01:29,100 --> 00:01:34,108
+The real SBI website is marked official, so genuine links aren't flagged.
+
+13
+00:01:36,400 --> 00:01:45,429
+The people most targeted are often more comfortable in Hindi. So Satark reads Hindi and Hinglish scams, and explains every warning in Hindi.
+
+14
+00:01:46,000 --> 00:01:48,989
+सावधान रहें। यह मैसेज ठगी है। (Be careful. This message is a scam.)
+
+15
+00:01:50,800 --> 00:02:00,025
+And it doesn't cry wolf. A genuine bank OTP that says "do not share" scores zero. Fewer false alarms means people keep listening.
+
+16
+00:02:05,200 --> 00:02:17,639
+Then it tells people exactly what to do. Warn the family on WhatsApp in one tap. Copy a ready complaint for the cybercrime portal. And if money is gone, call 1930, straight away.
+
+17
+00:02:19,600 --> 00:02:26,106
+Everything runs on the phone. Nothing is uploaded. It's free, needs no login, and works offline.
+
+18
+00:02:29,400 --> 00:02:34,366
+Satark. Built for Orbix 2026. Stay alert. Stay safe.

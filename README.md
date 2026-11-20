@@ -6,7 +6,7 @@
 
 <p align="center">
 <a href="https://ankur17nith.github.io/satark/"><b>Live app</b></a> ·
-<a href="docs/media/satark-demo.mp4">Demo video (2:38)</a> ·
+<a href="docs/media/satark-demo.mp4">Pitch video (2:38, narrated)</a> ·
 <a href="JUDGES.md">3-minute judge guide</a> ·
 <a href="docs/DETECTION.md">How detection works</a> ·
 <a href="evidence/eval.json">Evaluation results</a>
@@ -157,8 +157,9 @@ docs/                architecture, detection rules, decisions, deployment, priva
 | Node.js `node:test` | tests and the evaluation script | MIT |
 | Lexend, Source Sans 3, Noto Sans Devanagari (Google Fonts) | typography | SIL Open Font License 1.1 |
 | GitHub Actions, GitHub Pages | CI and hosting | hosting |
+| Kokoro-82M (`af_heart`, `hf_alpha` voices), run locally with kokoro-onnx | the pitch video's narration (a synthetic voice) | Apache-2.0 |
 
-Our code is MIT ([`LICENSE`](LICENSE)). The demo video's music was generated in code for this project.
+Our code is MIT ([`LICENSE`](LICENSE)). The pitch video's music was generated in code for this project, and its narration is a synthetic voice; captions are in [`docs/media/satark-demo.en.srt`](docs/media/satark-demo.en.srt).
 
 ## Contributing, security, licence
 

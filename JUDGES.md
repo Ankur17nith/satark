@@ -4,7 +4,7 @@ The shortest route through the submission.
 
 ## Three-minute review
 
-1. Watch the [demo video](docs/media/satark-demo.mp4) (2:38).
+1. Watch the [pitch video](docs/media/satark-demo.mp4) (2:38, narrated, captions in [`satark-demo.en.srt`](docs/media/satark-demo.en.srt)).
 2. Open the live app: https://ankur17nith.github.io/satark/. Tap **Digital arrest**: it scores 95, names the scam and highlights every red flag. Tap **Genuine OTP**: it scores 0.
 3. Switch to **हिं** at the top right and tap **Hindi message**. The interface and every explanation change to Hindi.
 4. Paste your own message, for example: `Dear Customer, your account will be blocked today. Update KYC at http://sbi-verify-kyc.top`

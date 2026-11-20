@@ -2,7 +2,7 @@
 
 ## 2½-minute video script
 
-The finished video (`docs/media/satark-demo.mp4`) follows this script, with the spoken lines shown as on-screen text.
+The finished video (`docs/media/satark-demo.mp4`) follows this script as a narrated pitch: a voiceover (synthetic voice, Kokoro) speaks each line over the matching scene, with music ducked under it. Captions for LinkedIn are in `docs/media/satark-demo.en.srt`.
 
 | Time | On screen | Say |
 |---|---|---|
