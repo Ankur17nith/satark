@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Satark: Is this message a scam?</title>
+  <meta name="description" content="Paste any suspicious SMS, WhatsApp message or link and find out in a second if it's a scam. Works in English and Hindi. Private: runs on your device.">
+  <meta name="theme-color" content="#fff7ea">
+  <meta property="og:title" content="Satark: Is this message a scam?">
+  <meta property="og:description" content="Check suspicious SMS, WhatsApp messages and links for scams in a second. English + Hindi. 100% on-device.">
+  <meta property="og:image" content="https://ankur17nith.github.io/satark/assets/og.png">
+  <meta property="og:url" content="https://ankur17nith.github.io/satark/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Martian+Mono:wdth,wght@75..112.5,300..600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#message">Skip to the message box</a>
+
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="./" aria-label="Satark home">
+        <img class="mark" src="assets/icon.svg" alt="" width="34" height="34">
+        <span>Satark</span>
+      </a>
+      <div class="lang-toggle" role="group" aria-label="Language / भाषा">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="hi" aria-pressed="false" lang="hi">हिंदी</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="tag" data-i18n="heroEyebrow"></p>
+        <h1 id="hero-title" class="kinetic"></h1>
+        <p class="lead"><span data-i18n="leadBefore"></span><span class="pen-under"><span data-i18n="leadPen"></span><svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M1 6 C 20 2, 40 9, 60 5 S 90 3, 99 6"/></svg></span><span data-i18n="leadAfter"></span></p>
+        <div class="samples-row">
+          <span class="label" data-i18n="tryExample"></span>
+          <div id="samples" class="chips"></div>
+        </div>
+      </div>
+
+      <div class="card checker">
+        <label for="message" class="visually-hidden" data-i18n="placeholder"></label>
+        <textarea id="message" rows="7" autocomplete="off" spellcheck="false" aria-describedby="privacy input-error"></textarea>
+        <p id="input-error" class="error" role="alert"></p>
+        <div class="input-actions">
+          <button type="button" id="check" class="btn btn-primary" data-i18n="check"></button>
+          <button type="button" id="paste" class="btn btn-secondary" data-i18n="paste"></button>
+          <button type="button" id="clear" class="btn btn-ghost" data-i18n="clear"></button>
+        </div>
+        <p id="privacy" class="privacy"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span data-i18n="privacy"></span></p>
+      </div>
+    </section>
+
+    <div class="waves" aria-hidden="true">
+      <div class="sheet s1"></div><div class="sheet s2"></div><div class="sheet s3"></div>
+    </div>
+
+    <section id="result" class="result wrap" hidden aria-live="polite"></section>
+
+    <section class="band" aria-labelledby="stats-title">
+      <div class="wrap">
+        <h2 id="stats-title" class="section-title" data-i18n="statsTitle"></h2>
+        <dl id="stat-tiles" class="tiles"></dl>
+        <p class="source" data-i18n="statsSource"></p>
+      </div>
+    </section>
+
+    <section class="how" aria-labelledby="how-title">
+      <div class="how-stage wrap">
+        <h2 id="how-title" class="section-title" data-i18n="howTitle"></h2>
+        <ol id="how-steps" class="how-steps how-track"></ol>
+        <div class="how-rope" aria-hidden="true"><div class="how-rope-fill"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="waves waves-footer" aria-hidden="true">
+      <div class="sheet s1"></div><div class="sheet s2"></div><div class="sheet s3"></div>
+    </div>
+    <div class="footer-body">
+      <div class="wrap footer-grid">
+        <div>
+          <p class="footer-brand"><img class="mark" src="assets/icon.svg" alt="" width="48" height="48">Satark</p>
+          <p class="footer-tag" data-i18n="footerTagline"></p>
+        </div>
+        <ul class="footer-links">
+          <li><a href="tel:1930"><strong>1930</strong> · National Cyber Crime Helpline</a></li>
+          <li><a href="https://cybercrime.gov.in/" target="_blank" rel="noopener">cybercrime.gov.in</a></li>
+          <li><a href="https://sancharsaathi.gov.in/" target="_blank" rel="noopener">Sanchar Saathi (Chakshu)</a></li>
+          <li><a href="https://github.com/Ankur17nith/satark" target="_blank" rel="noopener" data-i18n="sourceCode"></a></li>
+        </ul>
+      </div>
+      <p class="wrap footer-note" data-i18n="footer"></p>
+    </div>
+  </footer>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
