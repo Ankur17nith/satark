@@ -1,10 +1,5 @@
-// Detection rules for Satark.
-// Each signal is a red flag (or, with a negative weight, a reassuring sign).
-// Patterns are matched case-insensitively against the original text so
-// that match positions can be highlighted in the UI.
-//
-// Note: JavaScript's \b only understands ASCII word characters, so
-// Devanagari patterns are written without \b.
+// Negative weight = reassuring sign. JavaScript's \b only understands ASCII,
+// so Devanagari patterns are written without it.
 
 const NEG = String.raw`(?<!\b(?:not|never|don'?t|do\s+not|mat|na)\s+)`;
 const ASK = String.raw`(?:share|send|tell|provide|give|forward|enter|type|read\s+out|batao|bataiye|bata\s*do|bhejo|bhej\s*do|de\s*do)`;
@@ -207,8 +202,7 @@ export const SIGNALS = [
   },
 ];
 
-// Scam families. A message is classified as the family with the most
-// distinct keyword hits (needs at least 2).
+// classify() picks the family with the most keyword hits, minimum 2.
 export const SCAM_TYPES = [
   {
     id: 'digitalArrest',
@@ -252,7 +246,6 @@ export const SCAM_TYPES = [
   },
 ];
 
-// Brands commonly impersonated in India, mapped to their official domains.
 export const BRANDS = {
   sbi: ['sbi.co.in', 'onlinesbi.sbi', 'sbi.bank.in', 'sbicard.com', 'yonobusiness.sbi', 'sbi'],
   hdfc: ['hdfcbank.com', 'hdfc.com', 'hdfcbank.bank.in'],
@@ -293,8 +286,6 @@ export const RISKY_TLDS = new Set([
   'cfd', 'sbs', 'lol', 'work', 'loan', 'win', 'bid', 'vip', 'cyou', 'gq', 'ml', 'cf', 'tk', 'ga', 'pw', 'mobi',
 ]);
 
-// UPI handle suffixes (personal VPAs). An unknown "name@handle" in a
-// message that also asks for money is a strong sign.
 export const UPI_HANDLES = [
   'ybl', 'ibl', 'axl', 'okaxis', 'okhdfcbank', 'okicici', 'oksbi', 'paytm', 'upi', 'apl', 'yapl', 'ptyes',
   'ptsbi', 'pthdfc', 'ptaxis', 'axisbank', 'icici', 'sbi', 'hdfcbank', 'kotak', 'freecharge', 'airtel',

@@ -1,8 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { analyze, segment, scoreFromRaw, levelFor } from '../src/engine.js';
-import { analyzeUrl, extractLinks } from '../src/links.js';
-import { SAMPLES } from '../src/samples.js';
+import { analyze, segment, scoreFromRaw, levelFor } from '../public/src/engine.js';
+import { analyzeUrl, extractLinks } from '../public/src/links.js';
+import { SAMPLES } from '../public/src/samples.js';
 
 const sample = (id) => SAMPLES.find((s) => s.id === id).text;
 

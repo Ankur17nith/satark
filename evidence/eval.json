@@ -1,0 +1,55 @@
+{
+  "set": "eval/messages.json",
+  "note": "Labelled evaluation set for Satark. Written for evaluation after the rules were built; the rules were not changed after seeing these results. All names, numbers, links and UPI IDs are fictional.",
+  "scam": {
+    "total": 30,
+    "high": "19 of 30",
+    "suspiciousOrHigh": "30 of 30",
+    "typeCorrectWhenHigh": "15 of 19",
+    "missed": [],
+    "wrongType": [
+      {
+        "expected": "kycBank",
+        "got": null,
+        "text": "Your credit card reward points worth Rs 7,850 expire today. Redeem now at https://rewardz-axisbank.online and enter card details to claim."
+      },
+      {
+        "expected": "utility",
+        "got": null,
+        "text": "Your SIM card will be blocked within 2 hours as per TRAI order due to illegal activity. Press 9 to talk to our executive."
+      },
+      {
+        "expected": "kycBank",
+        "got": null,
+        "text": "Sir aapka account block ho jayega, jaldi se OTP batao, verification ke liye zaroori hai."
+      },
+      {
+        "expected": "utility",
+        "got": null,
+        "text": "Install AnyDesk so our technician can help you pay your electricity bill and avoid disconnection today."
+      }
+    ]
+  },
+  "genuine": {
+    "total": 30,
+    "flaggedHigh": "0 of 30",
+    "flaggedSuspiciousOrHigh": "3 of 30",
+    "flagged": [
+      {
+        "level": "suspicious",
+        "score": 23,
+        "text": "Rs 1,250.00 debited from A/c XX4821 on 18-Nov-26 to UPI/merchant. If not done by you, call 1800 1234 567. -Axis Bank"
+      },
+      {
+        "level": "suspicious",
+        "score": 30,
+        "text": "Hi mom, reached the hostel safely. Will call you after dinner."
+      },
+      {
+        "level": "suspicious",
+        "score": 23,
+        "text": "Your complaint ID 2026112045 has been registered. Our team will contact you within 48 hours. -Tata Power"
+      }
+    ]
+  }
+}

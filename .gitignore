@@ -1,4 +1,13 @@
+# Dependencies and OS files
 node_modules/
 .DS_Store
+Thumbs.db
 *.log
+
+# Local tooling output
 graphify-out/
+brag-output/
+
+# Editors
+.vscode/
+.idea/

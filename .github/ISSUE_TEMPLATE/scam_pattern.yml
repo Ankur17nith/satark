@@ -1,0 +1,34 @@
+name: Report a scam pattern
+description: A scam message Satark missed (false negative) or a genuine message it flagged (false positive)
+labels: [detection]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Remove personal data first.** Replace real names, phone numbers, account numbers, UPI IDs and links with placeholders such as `98XXXXXX10` or `example-link.xyz`. Issues are public.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What went wrong?
+      options:
+        - A scam was NOT detected (or scored too low)
+        - A genuine message was flagged as a scam
+    validations:
+      required: true
+  - type: textarea
+    id: message
+    attributes:
+      label: The message (with personal data removed)
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: score
+    attributes:
+      label: Score Satark gave
+      placeholder: e.g. 18 / 100, "No obvious scam signs"
+  - type: input
+    id: language
+    attributes:
+      label: Language
+      placeholder: English, Hindi, Hinglish, …

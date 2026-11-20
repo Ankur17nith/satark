@@ -1,4 +1,3 @@
-// Extracts and analyses links, phone numbers and UPI IDs found in a message.
 import { BRANDS, SHORTENERS, RISKY_TLDS, UPI_HANDLES } from './rules.js';
 
 const TLD_LIST = 'com|in|net|org|co|xyz|top|click|link|live|online|site|info|shop|buzz|icu|me|ly|io|app|cfd|sbs|lol|vip|win|tk|ml|ga|cf|gq|pw|cc|gov\\.in|co\\.in|org\\.in|sbi|bank\\.in';
@@ -11,7 +10,7 @@ const PHONE_RE = /(?:\+|\b00)\d{1,3}[\s-]?\d(?:[\s-]?\d){6,13}\b|(?<![\d+])\b[6-
 
 const TRAILING = /[.,;:!?)\]}'"]+$/;
 
-export function hostMatches(host, domain) {
+function hostMatches(host, domain) {
   return host === domain || host.endsWith('.' + domain);
 }
 

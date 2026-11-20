@@ -1,4 +1,3 @@
-// Example messages modelled on real scam patterns reported in India.
 // Names, numbers and links are made up.
 export const SAMPLES = [
   {

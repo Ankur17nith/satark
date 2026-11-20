@@ -1,4 +1,3 @@
-// Builds the WhatsApp warning and the cybercrime complaint draft.
 import { UI, SCAM_INFO } from './i18n.js';
 
 export function shareText(result, lang, appUrl) {

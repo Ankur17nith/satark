@@ -1,11 +1,9 @@
-// Satark scam-detection engine. Pure functions, no DOM, runs in the
-// browser and in Node (for tests). Nothing leaves the device.
+// No DOM access here: the tests import this module directly in Node.
 import { SIGNALS, SCAM_TYPES } from './rules.js';
 import { extractLinks } from './links.js';
 
-export const LEVELS = { LOW: 'low', SUSPICIOUS: 'suspicious', HIGH: 'high' };
+const LEVELS = { LOW: 'low', SUSPICIOUS: 'suspicious', HIGH: 'high' };
 
-// Combinations that are far more dangerous together than apart.
 const COMBOS = [
   { id: 'digitalArrestCombo', needs: ['authority', 'threat'], bonus: 15 },
   { id: 'isolationCombo', needs: ['authority', 'secrecy'], bonus: 15 },
@@ -81,7 +79,6 @@ export function analyze(input) {
   const combos = COMBOS.filter((c) => c.needs.every((n) => ids.has(n)));
   combos.forEach((c) => { raw += c.bonus; });
 
-  // A link combined with any pressure tactic is the classic phishing shape.
   const unofficialLink = urls.some((u) => !u.official);
   if (unofficialLink && (ids.has('urgency') || ids.has('threat') || ids.has('kyc') || ids.has('reward'))) {
     raw += 10;
@@ -107,7 +104,6 @@ export function analyze(input) {
   };
 }
 
-// Splits text into plain / highlighted segments, merging overlapping spans.
 export function segment(text, spans) {
   const sorted = [...spans].sort((a, b) => a.start - b.start || b.end - a.end);
   const merged = [];

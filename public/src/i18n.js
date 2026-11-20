@@ -1,4 +1,3 @@
-// UI copy in English and Hindi.
 export const UI = {
   en: {
     tagline: 'Got a suspicious SMS, WhatsApp message or link? Paste it here. Find out in a second whether it\'s a scam.',

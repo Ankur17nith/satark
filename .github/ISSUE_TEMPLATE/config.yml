@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Lost money to a scam? Call 1930 or report at cybercrime.gov.in
+    url: https://cybercrime.gov.in/
+    about: Satark can't recover money. India's National Cyber Crime Helpline (1930) can freeze funds if you report quickly.
+  - name: Security vulnerability
+    url: https://github.com/Ankur17nith/satark/security/policy
+    about: Please report vulnerabilities privately, not as an issue.
