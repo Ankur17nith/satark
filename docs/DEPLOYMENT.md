@@ -4,15 +4,11 @@ Satark is a static site: the folder `public/` *is* the app. No build step is nee
 
 ## GitHub Pages (the default)
 
-Every push to `main` runs `.github/workflows/pages.yml`, which runs the tests and, if they pass, publishes `public/` to GitHub Pages.
-
-**One-time setup** (repository owner):
-
-1. Open the repository on GitHub → **Settings → Pages**.
-2. Under **Build and deployment → Source**, choose **GitHub Actions**.
-3. Push to `main`, or run the workflow by hand: **Actions → Deploy to GitHub Pages → Run workflow**.
+Every push to `main` runs `.github/workflows/pages.yml`. It runs the tests and, if they pass, publishes the contents of `public/` to the `gh-pages` branch. GitHub Pages serves that branch.
 
 The site is published at **https://ankur17nith.github.io/satark/**.
+
+If Pages is ever switched off, re-enable it in **Settings → Pages → Build and deployment**: Source **Deploy from a branch**, branch **gh-pages**, folder **/ (root)**.
 
 ## Other static hosts
 
