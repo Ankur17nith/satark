@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Satark: Orbix 2026 Round 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Martian+Mono:wdth,wght@75..112.5,300..600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;700&display=block" rel="stylesheet">
+<style>
+  @page { size: 1920px 1080px; margin: 0; }
+  :root {
+    --paper: #fff7ea; --paper-2: #fbeedb; --card: #fffcf5; --ink: #0b1533; --ink-2: #24305a; --body: #3b4568; --muted: #5e6684;
+    --sea: #1d4bff; --sea-deep: #0e2fb3; --sun: #ffc93c; --rescue: #ff5a1f; --rescue-big: #f04a10; --safe: #19c79a;
+    --rescue-ink: #c2410c; --safe-ink: #066c50; --danger-ink: #c0182c;
+    --danger-tint: #ffe1e4; --safe-tint: #d8f5ea; --sun-tint: #fff0c2; --sea-tint: #e3ebff;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #777; font-family: 'Archivo', 'Noto Sans Devanagari', sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .slide { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); page-break-after: always; break-after: page; padding: 96px 120px 150px; }
+  .slide::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.08; z-index: 20;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.04 0 0 0 0 0.08 0 0 0 0 0.2 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  @media print { .slide::after { display: none; } }
+  .waves { position: absolute; left: 0; right: 0; bottom: 0; height: 70px; }
+  .waves div { position: absolute; left: 0; right: 0; height: 100%; background-repeat: repeat-x; background-size: 600px 100%; }
+  .w1 { top: 0; background-position: -120px 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 56' preserveAspectRatio='none'%3E%3Cpath d='M0 24 C 150 8, 150 8, 300 24 S 450 40, 600 24 V56 H0Z' fill='%23b7ccff'/%3E%3C/svg%3E"); }
+  .w2 { top: 12px; background-position: -330px 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 56' preserveAspectRatio='none'%3E%3Cpath d='M0 26 C 100 12, 200 12, 300 26 S 500 40, 600 26 V56 H0Z' fill='%236f93ff'/%3E%3C/svg%3E"); }
+  .w3 { top: 26px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 56' preserveAspectRatio='none'%3E%3Cpath d='M0 22 C 150 10, 150 10, 300 22 S 450 34, 600 22 V56 H0Z' fill='%231d4bff'/%3E%3C/svg%3E"); }
+  .foot { position: absolute; left: 120px; right: 120px; bottom: 86px; display: flex; justify-content: space-between; align-items: center; font-family: 'Martian Mono', monospace; font-size: 18px; color: var(--muted); z-index: 2; }
+  .foot b { display: flex; align-items: center; gap: 10px; font-family: 'Archivo'; font-variation-settings: 'wdth' 70; font-weight: 900; font-size: 26px; text-transform: uppercase; color: var(--ink); }
+  .foot img { width: 34px; height: 34px; }
+
+  .tag { display: inline-block; padding: 6px 14px; border-radius: 5px; background: var(--ink); color: var(--paper); font-family: 'Martian Mono', monospace; font-size: 20px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .h { font-variation-settings: 'wdth' 70; font-weight: 800; text-transform: uppercase; letter-spacing: -0.01em; line-height: 0.88; color: var(--ink); text-shadow: 0.045em 0.03em 0 rgb(29 75 255 / 0.45); }
+  .h1 { font-size: 104px; margin-top: 26px; }
+  .h em { font-style: normal; color: var(--rescue-big); }
+  .lead { margin-top: 26px; font-size: 34px; line-height: 1.4; color: var(--body); max-width: 1500px; }
+  .pen { position: relative; display: inline-block; color: var(--ink); font-weight: 700; }
+  .pen svg { position: absolute; left: -2%; bottom: -0.32em; width: 104%; height: 0.5em; overflow: visible; }
+  .pen path { fill: none; stroke: var(--rescue); stroke-width: 5; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+
+  .card { background: var(--card); border: 3px solid var(--ink); border-radius: 16px; padding: 30px 32px; }
+  .press { box-shadow: 8px 8px 0 var(--ink); }
+  .card h3 { font-variation-settings: 'wdth' 75; font-weight: 800; font-size: 36px; line-height: 1.05; text-transform: uppercase; }
+  .card p { margin-top: 12px; font-size: 25px; line-height: 1.4; color: var(--body); }
+  .num { font-variation-settings: 'wdth' 70; font-weight: 900; font-size: 84px; line-height: 0.85; color: var(--sea); text-shadow: 0.045em 0.03em 0 rgb(255 90 31 / 0.55); }
+  .grid { display: grid; gap: 28px; margin-top: 54px; }
+  .g2 { grid-template-columns: repeat(2, 1fr); } .g3 { grid-template-columns: repeat(3, 1fr); } .g4 { grid-template-columns: repeat(4, 1fr); } .g5 { grid-template-columns: repeat(5, 1fr); }
+  .sun { background: var(--sun-tint); } .mint { background: var(--safe-tint); } .blue { background: var(--sea-tint); } .rose { background: var(--danger-tint); }
+
+  .phone { width: 400px; height: 820px; padding: 13px; border-radius: 58px; background: var(--ink); box-shadow: 14px 14px 0 var(--sea); flex: none; }
+  .phone div { width: 100%; height: 100%; border-radius: 46px; overflow: hidden; background: var(--paper); }
+  .phone img { width: 100%; display: block; }
+  .row { display: flex; gap: 80px; align-items: center; }
+
+  /* Stats band slide */
+  .band { background: var(--sun); }
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 60px; border-block: 3px solid var(--ink); }
+  .tile { padding: 40px 28px 40px 0; }
+  .tile + .tile { border-left: 3px solid var(--ink); padding-left: 32px; }
+  .tile dd { font-family: 'Martian Mono', monospace; font-variation-settings: 'wdth' 80; font-weight: 300; font-size: 70px; letter-spacing: -0.05em; line-height: 1; white-space: nowrap; }
+  .tile dt { margin-top: 18px; font-family: 'Martian Mono', monospace; font-size: 20px; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.4; }
+  .source { margin-top: 30px; font-size: 21px; color: var(--ink); font-family: 'Martian Mono', monospace; }
+
+  /* Comparison */
+  table { width: 100%; border-collapse: collapse; margin-top: 44px; font-size: 27px; }
+  th, td { text-align: left; padding: 15px 20px; border-bottom: 2px solid rgb(11 21 51 / 0.18); }
+  th { font-family: 'Martian Mono', monospace; font-size: 19px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 3px solid var(--ink); }
+  td:first-child { font-weight: 600; color: var(--ink); }
+  .yes { display: inline-block; padding: 3px 14px; border: 2.5px solid var(--ink); border-radius: 6px; background: var(--safe); font-family: 'Martian Mono', monospace; font-size: 19px; font-weight: 600; }
+  .no { color: var(--muted); font-size: 24px; }
+
+  /* Pipeline */
+  .flow { display: grid; grid-template-columns: 1fr 70px 1.5fr 70px 1fr 70px 1.3fr; align-items: center; margin-top: 64px; }
+  .arrow { font-size: 64px; text-align: center; color: var(--ink); font-weight: 900; }
+  .stack { display: grid; gap: 16px; }
+  .chip { border: 3px solid var(--ink); border-radius: 12px; padding: 16px 20px; font-size: 25px; font-weight: 700; background: var(--card); }
+  .chip small { display: block; font-weight: 400; color: var(--body); font-size: 21px; margin-top: 4px; }
+  .formula { font-family: 'Martian Mono', monospace; font-size: 25px; line-height: 1.5; }
+
+  /* Closing */
+  .close { background: var(--sea-deep); color: var(--paper); }
+  .close .h { color: var(--paper); text-shadow: 0.045em 0.03em 0 rgb(255 90 31 / 0.6); }
+  .close .tag { background: var(--sun); color: var(--ink); }
+  .linkbox { margin-top: 48px; display: flex; gap: 60px; align-items: center; }
+  .qr { width: 270px; height: 270px; background: #fff; border: 4px solid var(--ink); border-radius: 18px; padding: 14px; box-shadow: 10px 10px 0 var(--sun); }
+  .qr img { width: 100%; height: 100%; }
+  .links { font-size: 36px; line-height: 1.7; }
+  .links b { font-family: 'Martian Mono', monospace; font-weight: 400; font-size: 22px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sun); display: block; line-height: 1.2; margin-top: 10px; }
+  .links span { text-decoration: underline; text-decoration-color: var(--sun); text-decoration-thickness: 3px; text-underline-offset: 8px; }
+</style>
+</head>
+<body>
+
+<!-- 1. Title -->
+<section class="slide">
+  <div class="row" style="justify-content: space-between">
+    <div style="max-width: 1060px">
+      <span class="tag">Orbix 2026 · Round 1 · Problem &amp; Innovation</span>
+      <h1 class="h" style="font-size: 168px; margin-top: 34px">Is this<br>message<br><em>a scam?</em></h1>
+      <p class="lead" style="font-size: 38px"><b style="color: var(--ink)">Satark</b> is a free, private scam checker for India. Paste any SMS, WhatsApp message or link and know <span class="pen">in one second<svg viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M1 6 C 20 2, 40 9, 60 5 S 90 3, 99 6"/></svg></span> whether it's a scam, which one, and what to do.</p>
+      <p style="margin-top: 40px; font-family: 'Martian Mono', monospace; font-size: 24px; color: var(--ink-2)">TEAM COMBIX · ANKUR GUPTA</p>
+    </div>
+    <div class="phone" style="transform: rotate(3deg)"><div><img src="shot-digital-arrest.jpg" alt=""></div></div>
+  </div>
+  <div class="waves"><div class="w1"></div><div class="w2"></div><div class="w3"></div></div>
+</section>
+
+<!-- 2. Problem: numbers -->
+<section class="slide band">
+  <span class="tag">The problem</span>
+  <h2 class="h h1">India lost ₹22,845 crore<br>to cyber fraud in one year</h2>
+  <dl class="tiles">
+    <div class="tile"><dd>₹22,845 cr</dd><dt>lost to cyber fraud<br>in 2024</dt></div>
+    <div class="tile"><dd>3×</dd><dt>more than in 2023<br>(₹7,465 cr)</dt></div>
+    <div class="tile"><dd>36.37 lakh</dd><dt>fraud complaints<br>filed in 2024</dt></div>
+    <div class="tile"><dd>₹1,935 cr</dd><dt>taken by digital-arrest<br>scams in 2024</dt></div>
+  </dl>
+  <p class="lead" style="color: var(--ink)">"Digital arrest" cases rose from <b>39,925</b> in 2022 to <b>1,23,672</b> in 2024. The Prime Minister warned the country about it in <i>Mann Ki Baat</i> (October 2024).</p>
+  <p class="source">Source: Ministry of Home Affairs reply in Parliament, March 2025 (I4C, NCRP and CFCFRMS data)</p>
+  <div class="foot"><b><img src="../../../public/assets/icon.svg" alt="">Satark</b><span>02</span></div>
+</section>
+
+<!-- 3. Why it works -->
+<section class="slide">
+  <span class="tag">Why people fall for it</span>
+  <h2 class="h h1">Scams run on <em>pressure</em>,<br>not technology</h2>
+  <div class="grid g5">
+    <div class="card rose"><h3>Fear</h3><p>"Arrest warrant in your name." "Account blocked today."</p></div>
+    <div class="card sun"><h3>Urgency</h3><p>"Within 2 hours." "Electricity cut tonight."</p></div>
+    <div class="card blue"><h3>Authority</h3><p>Fake CBI, police, RBI, TRAI and bank officers.</p></div>
+    <div class="card mint"><h3>Isolation</h3><p>"Stay on the video call. Don't tell your family."</p></div>
+    <div class="card"><h3>Greed</h3><p>"Earn ₹3,000 a day for liking videos."</p></div>
+  </div>
+  <p class="lead" style="margin-top: 56px"><b style="color: var(--ink)">The gap:</b> awareness campaigns explain scams in general, but nothing helps at the moment someone is <span class="pen">holding a specific, frightening message<svg viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M1 6 C 20 2, 40 9, 60 5 S 90 3, 99 6"/></svg></span>, alone and in a hurry.</p>
+  <div class="foot"><b><img src="../../../public/assets/icon.svg" alt="">Satark</b><span>03</span></div>
+</section>
+
+<!-- 4. Users -->
+<section class="slide">
+  <span class="tag">Who it's for</span>
+  <h2 class="h h1">The people scammers<br><em>target most</em></h2>
+  <div class="grid g4">
+    <div class="card sun"><div class="num">01</div><h3 style="margin-top: 22px">Parents and older adults</h3><p>Digital arrest, KYC and electricity scams. Often more comfortable in Hindi.</p></div>
+    <div class="card mint"><div class="num">02</div><h3 style="margin-top: 22px">Students and job-seekers</h3><p>Part-time "task" jobs and fake investment groups on Telegram.</p></div>
+    <div class="card blue"><div class="num">03</div><h3 style="margin-top: 22px">New UPI users</h3><p>"Sent by mistake" refunds, QR codes and collect requests.</p></div>
+    <div class="card rose"><div class="num">04</div><h3 style="margin-top: 22px">The family helper</h3><p>The person everyone forwards messages to, who needs a fast way to check and explain.</p></div>
+  </div>
+  <div class="foot"><b><img src="../../../public/assets/icon.svg" alt="">Satark</b><span>04</span></div>
+</section>
+
+<!-- 5. Solution -->
+<section class="slide">
+  <div class="row">
+    <div style="flex: 1">
+      <span class="tag">The solution</span>
+      <h2 class="h h1">Paste. Understand. <em>Act.</em></h2>
+      <div class="grid g2" style="margin-top: 44px; gap: 22px">
+        <div class="card"><h3>A verdict in 1 second</h3><p>Risk score 0–100 in plain words: no obvious signs, suspicious, or very likely a scam.</p></div>
+        <div class="card"><h3>Names the scam</h3><p>10 scam families common in India, each explained, with what to do.</p></div>
+        <div class="card"><h3>Shows every red flag</h3><p>The exact phrases are highlighted, each with a reason. Links, numbers and UPI IDs are checked.</p></div>
+        <div class="card"><h3>Gives the next step</h3><p>Warn family on WhatsApp, copy a complaint for cybercrime.gov.in, call 1930.</p></div>
+      </div>
+      <p class="lead" style="font-size: 28px; margin-top: 30px">English and हिंदी · runs on the phone · free, no login · works offline</p>
+    </div>
+    <div class="phone"><div><img src="shot-kyc.jpg" alt=""></div></div>
+  </div>
+  <div class="foot"><b><img src="../../../public/assets/icon.svg" alt="">Satark</b><span>05</span></div>
+</section>
+
+<!-- 6. See it -->
+<section class="slide" style="padding-top: 80px">
+  <span class="tag">See it</span>
+  <div class="row" style="gap: 70px; margin-top: 40px; align-items: flex-start; justify-content: center">
+    <div style="text-align: center"><div class="phone" style="width: 360px; height: 700px"><div><img src="shot-digital-arrest.jpg" alt=""></div></div><p class="lead" style="font-size: 27px; max-width: 380px; margin: 34px auto 0">Digital arrest: <b style="color: var(--danger-ink)">95</b>, named and explained</p></div>
+    <div style="text-align: center"><div class="phone" style="width: 360px; height: 700px"><div><img src="shot-kyc.jpg" alt=""></div></div><p class="lead" style="font-size: 27px; max-width: 380px; margin: 34px auto 0">Fake SBI link: why it's unsafe, check by check</p></div>
+    <div style="text-align: center"><div class="phone" style="width: 360px; height: 700px"><div><img src="shot-genuine.jpg" alt=""></div></div><p class="lead" style="font-size: 27px; max-width: 380px; margin: 34px auto 0">Genuine bank OTP: <b style="color: var(--safe-ink)">0</b>, no false alarm</p></div>
+  </div>
+  <div class="foot"><b><img src="../../../public/assets/icon.svg" alt="">Satark</b><span>06</span></div>
+</section>
+
+<!-- 7. Innovation -->
+<section class="slide">
+  <span class="tag">What makes it different</span>
+  <h2 class="h h1">It reads the <em>message</em>,<br>not just the link</h2>
+  <table>
+    <tr><th></th><th>Satark</th><th>Typical scam checkers</th></tr>
+    <tr><td>Understands the wording scammers use</td><td><span class="yes">YES</span></td><td class="no">Mostly look up a URL or number</td></tr>
+    <tr><td>English, Hindi and Hinglish, explained in both</td><td><span class="yes">YES</span></td><td class="no">Usually English only</td></tr>
+    <tr><td>Explains every point of the score</td><td><span class="yes">YES</span></td><td class="no">A bare "safe / unsafe"</td></tr>
+    <tr><td>Message never leaves the phone</td><td><span class="yes">YES</span></td><td class="no">Often uploaded to a server or AI API</td></tr>
+    <tr><td>Built for Indian scams and 1930 / Chakshu reporting</td><td><span class="yes">YES</span></td><td class="no">Generic</td></tr>
+    <tr><td>Ends with an action: family warning, complaint draft</td><td><span class="yes">YES</span></td><td class="no">Stops at a label</td></tr>
+  </table>
+  <div class="foot"><b><img src="../../../public/assets/icon.svg" alt="">Satark</b><span>07</span></div>
+</section>
+
+<!-- 8. How it works -->
+<section class="slide">
+  <span class="tag">How it works</span>
+  <h2 class="h h1">Explainable rules,<br>running <em>on the device</em></h2>
+  <div class="flow">
+    <div class="chip" style="text-align: center; background: var(--sun-tint)">Pasted or shared message</div>
+    <div class="arrow">→</div>
+    <div class="stack">
+      <div class="chip">19 red-flag signals<small>English, Hindi, Hinglish; negation-aware</small></div>
+      <div class="chip">11 link checks<small>look-alike domains, shorteners, .apk, fake gov sites</small></div>
+      <div class="chip">5 combination rules<small>e.g. authority + threat = digital arrest</small></div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="chip formula" style="text-align: center">score =<br>100·(1 − e<sup>−Σ/45</sup>)</div>
+    <div class="arrow">→</div>
+    <div class="chip" style="background: var(--safe-tint)">Verdict, scam type, highlighted phrases, next steps</div>
+  </div>
+  <p class="lead" style="margin-top: 60px">No server, no API key, no account. A web app that installs on the phone, works offline, and accepts <b style="color: var(--ink)">Share → Satark</b> from WhatsApp on Android.</p>
+  <div class="foot"><b><img src="../../../public/assets/icon.svg" alt="">Satark</b><span>08</span></div>
+</section>
+
+<!-- 9. Feasibility -->
+<section class="slide band">
+  <span class="tag">Feasibility</span>
+  <h2 class="h h1">Already built, tested and live</h2>
+  <dl class="tiles">
+    <div class="tile"><dd>30 / 30</dd><dt>test scams flagged<br>at least "suspicious"</dt></div>
+    <div class="tile"><dd>0 / 30</dd><dt>genuine messages<br>rated "very likely scam"</dt></div>
+    <div class="tile"><dd>13 / 13</dd><dt>automated tests<br>passing in CI</dt></div>
+    <div class="tile"><dd>₹0</dd><dt>running cost:<br>static site, no APIs</dt></div>
+  </dl>
+  <p class="lead" style="color: var(--ink)">Evaluated on 60 labelled messages written after the rules were built (small and written by the team; the misses are published in the README). Open source under MIT.</p>
+  <div class="foot"><b><img src="../../../public/assets/icon.svg" alt="">Satark</b><span>09</span></div>
+</section>
+
+<!-- 10. Impact -->
+<section class="slide">
+  <span class="tag">Impact</span>
+  <h2 class="h h1">Help at the moment<br>of <em>decision</em></h2>
+  <div class="grid g3">
+    <div class="card press sun"><h3>Stops the loss</h3><p>Prevention works only before the money moves. Satark answers in that moment.</p></div>
+    <div class="card press mint"><h3>Spreads through families</h3><p>Every check can become a warning in a family WhatsApp group, where these scams travel.</p></div>
+    <div class="card press blue"><h3>Faster reporting</h3><p>A ready complaint and a 1930 prompt help victims report while banks can still freeze funds.</p></div>
+  </div>
+  <p class="lead" style="margin-top: 52px"><b style="color: var(--ink)">Next:</b> check screenshots of messages, check phone-call scripts, Tamil, Telugu, Bengali and Marathi, and partner with banks, NGOs and police cyber cells, at no running cost.</p>
+  <div class="foot"><b><img src="../../../public/assets/icon.svg" alt="">Satark</b><span>10</span></div>
+</section>
+
+<!-- 11. Close -->
+<section class="slide close">
+  <div class="row" style="justify-content: space-between; align-items: center">
+    <div>
+      <span class="tag">Try it now</span>
+      <h2 class="h" style="font-size: 150px; margin-top: 30px">Stay alert.<br>Stay safe.</h2>
+      <div class="links" style="margin-top: 44px">
+        <b>Live app</b><span>ankur17nith.github.io/satark</span>
+        <b>Code</b><span>github.com/Ankur17nith/satark</span>
+      </div>
+      <p style="margin-top: 44px; font-family: 'Martian Mono', monospace; font-size: 24px; color: rgb(255 247 234 / 0.85)">TEAM COMBIX · ANKUR GUPTA · ORBIX 2026</p>
+    </div>
+    <div style="text-align: center">
+      <div class="qr"><img src="qr.svg" alt="QR code to the live app"></div>
+      <p style="margin-top: 26px; font-family: 'Martian Mono', monospace; font-size: 22px">SCAN TO TRY</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
