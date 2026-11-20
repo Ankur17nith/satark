@@ -33,7 +33,7 @@ Built for **Orbix 2026**, the 48-hour global open-innovation hackathon by Makers
 | Scam messages flagged | 30 of 30 rated at least "Suspicious"; 19 of 30 rated "Very likely a SCAM" | [`eval.json`](evidence/eval.json) |
 | Genuine messages wrongly flagged | 0 of 30 rated "Very likely a SCAM"; 3 of 30 rated "Suspicious" | [`eval.json`](evidence/eval.json) |
 | Scam type named correctly | 15 of the 19 high-risk results | [`eval.json`](evidence/eval.json) |
-| Tests | 14 of 14 passing: detection, link analysis, negation, false-positive checks, WCAG AA colour contrast in both themes | [`tests.json`](evidence/tests.json) |
+| Tests | 13 of 13 passing: detection, link analysis, negation, false-positive checks, WCAG AA colour contrast | [`tests.json`](evidence/tests.json) |
 | Data sent off the device | None. No server, account or analytics; the only external request is Google Fonts. | [`docs/PRIVACY.md`](docs/PRIVACY.md) |
 | Running cost | ₹0: a static site on GitHub Pages, no APIs | [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) |
 
@@ -55,6 +55,7 @@ The evaluation set is 60 messages (30 scams across 10 scam types, 30 genuine) wr
 - **English and Hindi:** reads English, Hindi and Hinglish wording; the whole interface and every explanation switch language.
 - **Next steps:** a WhatsApp warning for family, a complaint draft for cybercrime.gov.in, the 1930 helpline and Sanchar Saathi (Chakshu).
 - **Installable and offline:** a PWA; on Android, share a message from WhatsApp or SMS straight into Satark.
+- **Printed design:** warm paper, ink and three spot colours, condensed poster type, a stamped verdict and drifting cut-paper waves. WCAG AA contrast is tested, and every animation stops under reduced motion. See [`docs/DESIGN.md`](docs/DESIGN.md).
 
 ## See it
 
@@ -93,8 +94,8 @@ From [`evidence/eval.json`](evidence/eval.json), regenerated with `npm run evide
 
 | Check | Result | Evidence |
 |---|---|---|
-| Unit tests (`node:test`) | 14 of 14 pass: every sample classified, ordinary messages not flagged, negation, curly apostrophes, URL checks, highlight segmentation, score bounds | [`tests.json`](evidence/tests.json) |
-| Colour contrast | Every text/background token pair meets WCAG AA (4.5:1) in light and dark themes, checked from `styles.css` | [`tests/contrast.test.js`](tests/contrast.test.js) |
+| Unit tests (`node:test`) | 13 of 13 pass: every sample classified, ordinary messages not flagged, negation, curly apostrophes, URL checks, highlight segmentation, score bounds | [`tests.json`](evidence/tests.json) |
+| Colour contrast | Every text/background pair in use meets WCAG AA (4.5:1; 3:1 for the large orange headline), checked from `styles.css` | [`tests/contrast.test.js`](tests/contrast.test.js) |
 | Published numbers | CI regenerates `evidence/` and fails if the committed numbers are out of date | [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
 | Deploys | GitHub Pages deploys only after the tests pass | [`.github/workflows/pages.yml`](.github/workflows/pages.yml) |
 | Untrusted input | Pasted or shared text is rendered with `textContent`, never `innerHTML` | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md#rendering-and-security) |

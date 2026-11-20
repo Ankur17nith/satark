@@ -32,7 +32,7 @@ These labels do not pre-award points; judges keep full scoring authority.
 | R2 · Technical implementation | Rule engine with 19 signals, 11 link checks, 5 combination rules, 10 scam families; PWA with offline support and share target | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md), [`docs/DETECTION.md`](docs/DETECTION.md) |
 | R2 · Functionality | 30 of 30 evaluation scams flagged; 0 of 30 genuine messages rated high | [`evidence/eval.json`](evidence/eval.json) |
 | R2 · Usability | Plain-language verdict first; bilingual; WCAG AA contrast tested; keyboard and reduced-motion support | [`tests/contrast.test.js`](tests/contrast.test.js) |
-| R2 · Code quality | Small pure modules, 14 tests, CI on Node 20 and 22, evidence check in CI | [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
+| R2 · Code quality | Small pure modules, 13 tests, CI on Node 20 and 22, evidence check in CI | [`.github/workflows/ci.yml`](.github/workflows/ci.yml) |
 | R3 · Presentation | Demo video following the pitch script; LinkedIn post | [`docs/hackathon/PITCH.md`](docs/hackathon/PITCH.md) |
 
 ## Known limits

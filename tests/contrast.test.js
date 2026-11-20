@@ -3,13 +3,8 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 const css = readFileSync(new URL('../public/styles.css', import.meta.url), 'utf8');
-
-function tokens(block) {
-  return Object.fromEntries([...block.matchAll(/--([\w-]+):\s*(#[0-9a-f]{6})\b/gi)].map((m) => [m[1], m[2]]));
-}
-const light = tokens(css.slice(css.indexOf(':root {'), css.indexOf('}', css.indexOf(':root {'))));
-const darkStart = css.indexOf(':root {', css.indexOf('prefers-color-scheme: dark'));
-const dark = tokens(css.slice(darkStart, css.indexOf('}', darkStart)));
+const root = css.slice(css.indexOf(':root {'), css.indexOf('}', css.indexOf(':root {')));
+const t = Object.fromEntries([...root.matchAll(/--([\w-]+):\s*(#[0-9a-f]{6})\b/gi)].map((m) => [m[1], m[2]]));
 
 function luminance(hex) {
   const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
@@ -23,21 +18,21 @@ function ratio(a, b) {
 
 // [text, background] pairs as used in styles.css
 const PAIRS = [
-  ['ink', 'bg'], ['ink', 'surface'], ['ink-2', 'bg'], ['ink-2', 'surface'],
-  ['accent-ink', 'accent'], ['high', 'high-bg'], ['mid', 'mid-bg'], ['low', 'low-bg'],
+  ['ink', 'paper'], ['ink-2', 'paper'], ['body', 'paper'], ['muted', 'paper'], ['muted', 'card'], ['body', 'card'],
+  ['rescue-ink', 'paper'], ['rescue-ink', 'card'], ['safe-ink', 'safe-tint'], ['warn-ink', 'sun-tint'], ['danger-ink', 'danger-tint'],
+  ['ink-2', 'danger-tint'], ['ink-2', 'sun-tint'], ['ink-2', 'safe-tint'],
+  ['ink', 'sun'], ['ink', 'rescue'], ['ink', 'safe'], ['paper', 'ink'], ['paper', 'sea-deep'],
 ];
 
-for (const [name, t] of [['light', light], ['dark', dark]]) {
-  test(`${name} theme text meets WCAG AA (4.5:1)`, () => {
-    for (const [fg, bg] of PAIRS) {
-      assert.ok(t[fg] && t[bg], `missing token --${fg} or --${bg}`);
-      const r = ratio(t[fg], t[bg]);
-      assert.ok(r >= 4.5, `--${fg} on --${bg}: ${r.toFixed(2)}:1`);
-    }
-  });
-}
+test('text meets WCAG AA (4.5:1) on every background it is used on', () => {
+  for (const [fg, bg] of PAIRS) {
+    assert.ok(t[fg] && t[bg], `missing token --${fg} or --${bg}`);
+    const r = ratio(t[fg], t[bg]);
+    assert.ok(r >= 4.5, `--${fg} on --${bg}: ${r.toFixed(2)}:1`);
+  }
+});
 
-test('white text on the WhatsApp and helpline buttons meets WCAG AA', () => {
-  assert.ok(ratio('#ffffff', light.wa) >= 4.5, `wa: ${ratio('#ffffff', light.wa).toFixed(2)}`);
-  assert.ok(ratio('#ffffff', light.high) >= 4.5, `helpline: ${ratio('#ffffff', light.high).toFixed(2)}`);
+test('the big orange headline line is at least 3:1 (WCAG AA for large text)', () => {
+  const r = ratio(t['rescue-big'], t.paper);
+  assert.ok(r >= 3, `--rescue-big on --paper: ${r.toFixed(2)}:1`);
 });

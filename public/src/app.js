@@ -53,6 +53,11 @@ function applyStaticText() {
     node.textContent = t[node.dataset.i18n];
   });
   input.placeholder = t.placeholder;
+  $('#hero-title').replaceChildren(...t.heroLines.map((line, i) => el('span', { class: 'kin-line' + (i === t.heroLines.length - 1 ? ' accent' : '') },
+    el('span', { class: 'riso' }, line))));
+  $('#stat-tiles').replaceChildren(...t.statTiles.map(([value, label]) => el('div', { class: 'tile' }, el('dd', {}, value), el('dt', {}, label))));
+  $('#how-steps').replaceChildren(...t.howSteps.map(([title, text], i) => el('li', { class: 'pop-in' },
+    el('span', { class: 'how-num', 'aria-hidden': 'true' }, String(i + 1).padStart(2, '0')), el('h3', {}, title), el('p', {}, text))));
   document.querySelectorAll('.lang-toggle button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
   renderSamples();
 }
@@ -78,7 +83,7 @@ function run() {
   lastResult = analyze(text);
   renderResult(lastResult);
   resultEl.hidden = false;
-  resultEl.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  resultEl.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'start' });
   $('#verdict-title').focus({ preventScroll: true });
 }
 
@@ -86,25 +91,39 @@ function section(titleKey, ...body) {
   return el('section', { class: 'card' }, el('h3', {}, UI[lang][titleKey]), ...body);
 }
 
+const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function countUp(node, to) {
+  if (reducedMotion() || to === 0) { node.textContent = to; return; }
+  const start = performance.now();
+  const step = (now) => {
+    const p = Math.min(1, (now - start) / 700);
+    node.textContent = Math.round(to * (1 - (1 - p) ** 3));
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
 function renderResult(r) {
   const t = UI[lang];
   const parts = [];
+  const num = el('span', { class: 'meter-num' }, '0');
 
-  parts.push(el('div', { class: `verdict verdict-${r.level}` },
+  const verdict = el('div', { class: `verdict verdict-${r.level}` },
+    el('div', { role: 'img', 'aria-label': `${t.riskScore}: ${r.score}/100` },
+      el('span', { class: 'meter-label' }, t.riskScore),
+      el('div', { class: 'meter' }, num, el('span', { class: 'meter-of' }, t.outOf))),
     el('div', { class: 'verdict-text' },
       el('h2', { id: 'verdict-title', tabindex: '-1' }, t.verdict[r.level]),
       el('p', {}, t.verdictSub[r.level])),
-    el('div', { class: 'meter', role: 'img', 'aria-label': `${t.riskScore}: ${r.score}/100` },
-      el('span', { class: 'meter-num' }, r.score),
-      el('span', { class: 'meter-label' }, t.riskScore),
-      el('div', { class: 'meter-bar' }, el('div', { class: 'meter-fill', style: `width:${Math.max(r.score, 3)}%` })))));
+    el('span', { class: 'stamp', 'aria-hidden': 'true' }, t.stamp[r.level]));
 
   if (r.scamType) {
     const info = SCAM_INFO[r.scamType][lang];
     parts.push(el('section', { class: 'card type-card' },
       el('p', { class: 'eyebrow' }, t.looksLike),
       el('h3', {}, info.name),
-      el('p', { class: 'muted' }, el('strong', {}, t.howItWorks + ': '), info.how),
+      el('p', { class: 'type-how' }, el('strong', {}, t.howItWorks + ': '), info.how),
       el('ul', { class: 'tips' }, info.tips.map((tip) => el('li', {}, tip)))));
   }
 
@@ -118,6 +137,7 @@ function renderResult(r) {
     parts.push(section('goodSigns', el('ul', { class: 'good' }, r.reassuring.map((s) => el('li', {}, s[lang])))));
   }
 
+  const left = parts.splice(0);
   parts.push(section('yourMessage',
     el('p', { class: 'message-view' }, r.segments.map((seg) => (seg.kind
       ? el('mark', { class: `hl hl-${seg.kind}` }, seg.text)
@@ -143,7 +163,7 @@ function renderResult(r) {
 
   if (r.level === 'low') {
     parts.push(section('stayingSafe', el('ul', { class: 'steps' }, LOW_STEPS[lang].map((s) => el('li', {}, s)))));
-    resultEl.replaceChildren(...parts);
+    layout(verdict, left, parts, null, num, r.score);
     return;
   }
 
@@ -159,10 +179,22 @@ function renderResult(r) {
     status,
     el('details', {}, el('summary', {}, t.reportTitle), draftBox)));
 
-  parts.push(el('a', { class: 'helpline', href: 'tel:1930' },
-    el('strong', {}, icon('phone'), t.lostMoney), el('span', {}, t.lostMoneySub)));
+  const helpline = el('a', { class: 'helpline', href: 'tel:1930' },
+    el('strong', {}, icon('phone'), t.lostMoney), el('span', {}, t.lostMoneySub));
 
-  resultEl.replaceChildren(...parts);
+  layout(verdict, left, parts, helpline, num, r.score);
+}
+
+// Verdict on top, then two columns (they stack on phones); each sheet slides in after the last.
+function layout(verdict, left, right, helpline, num, score) {
+  const blocks = [verdict];
+  if (left.length) blocks.push(el('div', { class: 'col' }, left));
+  blocks.push(el('div', { class: 'col' }, right));
+  if (helpline) blocks.push(helpline);
+  const sheets = [verdict, ...left, ...right, helpline].filter(Boolean);
+  sheets.forEach((node, i) => { node.classList.add('sheet-in'); node.style.setProperty('--i', i); });
+  resultEl.replaceChildren(...blocks);
+  countUp(num, score);
 }
 
 async function copy(text, box, status) {

@@ -53,7 +53,7 @@ Weights are deliberately simple: a strong, near-certain sign (asking for an OTP,
 ## UI changes
 
 - Keep every user-facing string in both languages in `i18n.js`.
-- Keep WCAG AA contrast (4.5:1 for text). Colours are CSS custom properties at the top of `public/styles.css`, with dark-mode values below them.
+- Keep WCAG AA contrast (4.5:1 for text). Colours are CSS custom properties at the top of `public/styles.css`; `tests/contrast.test.js` checks every pair in use. See [`docs/DESIGN.md`](docs/DESIGN.md).
 - Build DOM with the `el()` helper in `app.js`. Never put user-supplied text into `innerHTML`.
 - If you change any file in `public/`, bump `CACHE` in `public/sw.js` so installed apps pick up the new version.
 
